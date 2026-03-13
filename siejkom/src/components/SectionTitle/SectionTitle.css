@@ -1,0 +1,45 @@
+/* src/components/SectionTitle/SectionTitle.css */
+
+.section-title {
+  max-width: 700px;
+}
+.section-title--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-title__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+}
+.section-title--center .section-title__eyebrow {
+  justify-content: center;
+}
+
+.section-title__line {
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--color-accent);
+  flex-shrink: 0;
+}
+.section-title--center .section-title__line {
+  display: none;
+}
+
+.section-title__heading {
+  color: var(--color-white);
+  margin-bottom: 1.25rem;
+}
+
+.section-title__subtitle {
+  color: var(--color-muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}

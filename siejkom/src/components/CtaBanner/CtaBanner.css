@@ -1,0 +1,78 @@
+/* src/components/CtaBanner/CtaBanner.css */
+
+.cta-banner {
+  background: var(--color-accent);
+  padding-block: 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.cta-banner::before {
+  content: "SIEJKOM";
+  position: absolute;
+  right: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 15vw, 14rem);
+  color: rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+}
+
+.cta-banner__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-banner__eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 0.75rem;
+}
+
+.cta-banner__title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: var(--color-bg);
+  line-height: 1.05;
+}
+
+.cta-banner__actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.cta-banner .btn--primary {
+  background: var(--color-bg);
+  color: var(--color-accent);
+}
+.cta-banner .btn--primary:hover {
+  background: #1a1a1a;
+}
+
+.cta-banner__phone {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--color-bg);
+  letter-spacing: 0.05em;
+  transition: opacity 0.2s;
+}
+.cta-banner__phone:hover {
+  opacity: 0.75;
+}
+
+@media (max-width: 700px) {
+  .cta-banner__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

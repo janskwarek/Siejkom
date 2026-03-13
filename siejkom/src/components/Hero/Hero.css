@@ -1,0 +1,236 @@
+/* src/components/Hero/Hero.css */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+
+  /* Concrete texture gradient background */
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 70% 40%,
+      rgba(232, 160, 32, 0.06) 0%,
+      transparent 60%
+    ),
+    linear-gradient(180deg, #0f0f0f 0%, #111 100%);
+}
+
+/* Animated background grid */
+.hero__grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hero__grid-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--i) * 16.66%);
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--color-border) 30%,
+    var(--color-border) 70%,
+    transparent 100%
+  );
+  opacity: 0.35;
+  animation: lineFloat 8s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.4s);
+}
+@keyframes lineFloat {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Content */
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+/* Eyebrow */
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  animation: fadeUp 0.8s var(--ease-out) both;
+}
+.hero__eyebrow-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.7;
+  }
+}
+
+/* Title */
+.hero__title {
+  animation: fadeUp 0.8s 0.1s var(--ease-out) both;
+  color: var(--color-white);
+}
+.hero__title-accent {
+  color: var(--color-accent);
+  position: relative;
+}
+.hero__title-accent::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-accent);
+  opacity: 0.4;
+}
+
+/* Subtitle */
+.hero__subtitle {
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  color: var(--color-muted);
+  max-width: 48ch;
+  animation: fadeUp 0.8s 0.2s var(--ease-out) both;
+}
+
+/* Actions */
+.hero__actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s 0.3s var(--ease-out) both;
+}
+.hero__btn {
+  font-size: 0.85rem;
+}
+
+/* Stats */
+.hero__stats {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+  animation: fadeUp 0.8s 0.4s var(--ease-out) both;
+}
+.hero__stat {
+  text-align: left;
+}
+.hero__stat-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  color: var(--color-white);
+  line-height: 1;
+}
+.hero__stat-value sup {
+  font-size: 1rem;
+  color: var(--color-accent);
+}
+.hero__stat-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-top: 0.25rem;
+  display: block;
+}
+.hero__stat-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--color-border);
+}
+
+/* Scroll indicator */
+.hero__scroll {
+  position: absolute;
+  bottom: 2rem;
+  right: var(--gutter);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  animation: fadeUp 1s 0.6s var(--ease-out) both;
+}
+.hero__scroll-bar {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--color-accent), transparent);
+  animation: scrollBar 2s ease-in-out infinite;
+}
+@keyframes scrollBar {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+/* Shared animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .hero__stats {
+    gap: 1.2rem;
+  }
+  .hero__scroll {
+    display: none;
+  }
+  .hero__actions {
+    flex-direction: column;
+  }
+}
