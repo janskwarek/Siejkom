@@ -1,35 +1,46 @@
 /* =============================================
    SIEJKOM — Global Styles
-   Aesthetic: Industrial Minimalism
-   Palette: Charcoal · Concrete · Amber
+   Paleta: Granat + Pomarańcz (inspiracja siejkom.pl)
+   Czcionki: Syne (display) + Outfit (body)
    ============================================= */
 
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;1,9..40,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap");
 
 /* ── CSS Variables ── */
 :root {
-  /* Colors */
-  --color-bg: #0f0f0f;
-  --color-surface: #1a1a1a;
-  --color-border: #2e2e2e;
-  --color-text: #e8e4de;
-  --color-muted: #888880;
-  --color-accent: #e8a020;
-  --color-accent-dark: #b87a10;
-  --color-white: #f5f1eb;
+  /* Kolory — dopasowane do siejkom.pl */
+  --color-bg: #0b0f1a;
+  --color-surface: #111827;
+  --color-surface-2: #1a2335;
+  --color-border: #1e2d45;
+  --color-border-soft: #253350;
 
-  /* Typography */
-  --font-display: "Bebas Neue", "Arial Narrow", sans-serif;
-  --font-body: "DM Sans", sans-serif;
+  --color-text: #f0f4ff;
+  --color-muted: #7a90b0;
+  --color-muted-soft: #9aaec8;
+
+  --color-accent: #e8610a;
+  --color-accent-dark: #c44f06;
+  --color-accent-glow: rgba(232, 97, 10, 0.15);
+  --color-white: #ffffff;
+
+  /* Typografia */
+  --font-display: "Syne", sans-serif;
+  --font-body: "Outfit", sans-serif;
 
   /* Spacing */
-  --section-pad: clamp(4rem, 10vw, 9rem);
+  --section-pad: clamp(4rem, 10vw, 8rem);
   --container: 1200px;
   --gutter: clamp(1.25rem, 5vw, 2.5rem);
 
-  /* Animation */
+  /* Animacje */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --duration: 0.5s;
+  --duration: 0.45s;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 16px;
 }
 
 /* ── Reset ── */
@@ -50,15 +61,15 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
-  font-weight: 300;
-  line-height: 1.65;
+  font-weight: 400;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-/* ── Scrollbar ── */
+/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
   background: var(--color-bg);
@@ -68,13 +79,13 @@ body {
   border-radius: 3px;
 }
 
-/* ── Selection ── */
+/* Selection */
 ::selection {
   background: var(--color-accent);
-  color: var(--color-bg);
+  color: var(--color-white);
 }
 
-/* ── Container ── */
+/* Container */
 .container {
   width: 100%;
   max-width: var(--container);
@@ -82,109 +93,176 @@ body {
   padding-inline: var(--gutter);
 }
 
-/* ── Typography Utilities ── */
+/* Typography */
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5 {
   font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  line-height: 1.05;
-  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--color-white);
 }
 
 h1 {
-  font-size: clamp(3.5rem, 10vw, 9rem);
+  font-size: clamp(2.8rem, 8vw, 7.5rem);
+  font-weight: 800;
 }
 h2 {
-  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 700;
 }
 h3 {
-  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 600;
 }
 h4 {
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 600;
 }
 
 p {
-  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
-  max-width: 60ch;
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+  color: var(--color-muted);
+  line-height: 1.75;
+  max-width: 62ch;
 }
 
 a {
   color: inherit;
   text-decoration: none;
 }
-
 img {
   display: block;
   max-width: 100%;
 }
+ul {
+  list-style: none;
+}
 
-/* ── Button Base ── */
+/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.85rem 2rem;
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.8rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
   cursor: pointer;
   border: none;
+  border-radius: var(--radius-sm);
   transition:
     transform 0.2s var(--ease-out),
-    background 0.2s;
+    background 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s;
+  white-space: nowrap;
 }
-
 .btn:hover {
   transform: translateY(-2px);
+}
+.btn:active {
+  transform: translateY(0);
 }
 
 .btn--primary {
   background: var(--color-accent);
-  color: var(--color-bg);
+  color: var(--color-white);
+  box-shadow: 0 4px 20px var(--color-accent-glow);
 }
 .btn--primary:hover {
   background: var(--color-accent-dark);
+  box-shadow: 0 6px 28px rgba(232, 97, 10, 0.3);
 }
 
 .btn--outline {
   background: transparent;
   color: var(--color-text);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border-soft);
 }
 .btn--outline:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
 }
 
-/* ── Section Utility ── */
+/* Section */
 .section {
   padding-block: var(--section-pad);
 }
 
-/* ── Reveal Animation ── */
+/* Reveal animation */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(28px);
   transition:
-    opacity 0.7s var(--ease-out),
-    transform 0.7s var(--ease-out);
+    opacity 0.65s var(--ease-out),
+    transform 0.65s var(--ease-out);
 }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ── Noise Texture Overlay ── */
-.noise::after {
+/* Card base */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s,
+    transform 0.3s;
+}
+.card:hover {
+  border-color: var(--color-border-soft);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+}
+
+/* Page hero (shared across pages) */
+.page-hero {
+  padding-top: 10rem;
+  padding-bottom: 5rem;
+  background:
+    linear-gradient(135deg, rgba(232, 97, 10, 0.06) 0%, transparent 50%),
+    var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+}
+.page-hero__eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.page-hero__eyebrow::before {
   content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+.page-hero__title {
+  color: var(--color-white);
+  font-size: clamp(2.8rem, 7vw, 6.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-pad: clamp(3rem, 8vw, 5rem);
+  }
 }

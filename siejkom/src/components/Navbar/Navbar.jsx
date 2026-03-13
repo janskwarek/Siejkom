@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { COMPANY, NAV_LINKS } from "../../data/company";
+import logo from "../../assets/logo.png";
 import "./Navbar.css";
 
 export default function Navbar() {
@@ -14,16 +15,14 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close menu on route change
   const close = () => setMenuOpen(false);
 
   return (
     <header className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
       <div className="container navbar__inner">
-        {/* Logo */}
+        {/* Logo — obrazek */}
         <NavLink to="/" className="navbar__logo" onClick={close}>
-          <span className="navbar__logo-main">{COMPANY.name}</span>
-          <span className="navbar__logo-sub">{COMPANY.tagline}</span>
+          <img src={logo} alt={COMPANY.name} className="navbar__logo-img" />
         </NavLink>
 
         {/* Desktop nav */}
@@ -63,6 +62,9 @@ export default function Navbar() {
       <div
         className={`navbar__drawer ${menuOpen ? "navbar__drawer--open" : ""}`}
       >
+        <NavLink to="/" className="navbar__drawer-logo" onClick={close}>
+          <img src={logo} alt={COMPANY.name} className="navbar__logo-img" />
+        </NavLink>
         {NAV_LINKS.map(({ label, path }) => (
           <NavLink
             key={path}
