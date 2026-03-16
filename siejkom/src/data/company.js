@@ -6,15 +6,16 @@ export const COMPANY = {
   tagline: "Beton & Deweloper",
   phone: "+48 537 37 37 37",
   email: "biuro@siejkombetony.pl",
+  email2: "maksymilian@siejkom.pl",
   address: "Piekary Śląskie, Śląsk",
   founded: 2015,
 };
 
 export const NAV_LINKS = [
   { label: "Oferta", path: "/oferta" },
-  { label: "Transport", path: "/transport" },
+  { label: "Flota", path: "/transport" },
   { label: "Realizacje", path: "/realizacje" },
-  { label: "Kontakt", path: "/kontakt" },
+  { label: "Zamów Beton", path: "/kontakt" },
 ];
 
 export const FEATURES = [

@@ -30,9 +30,9 @@ export default function Kontakt() {
         <div className="container">
           <p className="page-hero__eyebrow">Kontakt</p>
           <h1 className="page-hero__title">
-            Skontaktuj
+            Zamów
             <br />
-            Się Z Nami
+            Beton
           </h1>
         </div>
       </div>

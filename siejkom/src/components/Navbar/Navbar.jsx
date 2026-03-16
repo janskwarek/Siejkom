@@ -62,9 +62,6 @@ export default function Navbar() {
       <div
         className={`navbar__drawer ${menuOpen ? "navbar__drawer--open" : ""}`}
       >
-        <NavLink to="/" className="navbar__drawer-logo" onClick={close}>
-          <img src={logo} alt={COMPANY.name} className="navbar__logo-img" />
-        </NavLink>
         {NAV_LINKS.map(({ label, path }) => (
           <NavLink
             key={path}

@@ -5,49 +5,43 @@ import { useReveal } from "../../hooks/useReveal";
 import "../Oferta/Oferta.css";
 import "./Realizacje.css";
 
-// Placeholder realizacje — zastąp prawdziwymi danymi + zdjęciami
 const PROJECTS = [
   {
     id: 1,
     title: "Dom Jednorodzinny – Piekary Śląskie",
     year: 2023,
-    type: "Deweloper",
-    img: "../../assets/20230809_135439-2048x1153.jpg",
+    img: "",
   },
   {
     id: 2,
     title: "Hala Produkcyjna – Bytom",
     year: 2023,
-    type: "Beton",
-    img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80",
+    img: "",
   },
   {
     id: 3,
     title: "Osiedle Domków – Radzionków",
     year: 2022,
     type: "Deweloper",
-    img: "https://images.unsplash.com/photo-1605276373954-0c4a0dac5b12?w=600&q=80",
+    img: "",
   },
   {
     id: 4,
-    title: "Parking Wielopoziomowy – Katowice",
+    title: "",
     year: 2022,
-    type: "Beton",
-    img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    img: "",
   },
   {
     id: 5,
     title: "Budynek Usługowy – Chorzów",
     year: 2021,
-    type: "Deweloper",
-    img: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80",
+    img: "",
   },
   {
     id: 6,
     title: "Fundament Mostu – Siemianowice",
     year: 2021,
-    type: "Beton",
-    img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80",
+    img: "",
   },
 ];
 
@@ -66,7 +60,6 @@ function ProjectCard({ project, index }) {
           className="project-card__img"
           loading="lazy"
         />
-        <span className="project-card__type">{project.type}</span>
       </div>
       <div className="project-card__body">
         <span className="project-card__year">{project.year}</span>

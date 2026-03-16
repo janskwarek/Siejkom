@@ -63,13 +63,6 @@ export default function Hero() {
             </span>
             <span className="hero__stat-label">Projektów</span>
           </div>
-          <div className="hero__stat-divider" />
-          <div className="hero__stat">
-            <span className="hero__stat-value">
-              100<sup>%</sup>
-            </span>
-            <span className="hero__stat-label">Jakości</span>
-          </div>
         </div>
       </div>
 

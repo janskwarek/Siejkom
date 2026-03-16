@@ -65,9 +65,9 @@ export default function Transport() {
             eyebrow="Flota"
             title={
               <>
-                Nasz
+                Nasza
                 <br />
-                Tabor
+                Flota
               </>
             }
             subtitle="Dysponujemy flotą nowoczesnych betoniarek zapewniających terminową i bezpieczną dostawę betonu na każdą budowę."

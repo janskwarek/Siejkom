@@ -58,7 +58,7 @@ export default function Footer() {
           <span>
             © {year} {COMPANY.name}. Wszelkie prawa zastrzeżone.
           </span>
-          <span className="footer__credit">Realizacja: Twoja Agencja</span>
+          <span className="footer__credit">Autor Strony: Jan Skwarek</span>
         </div>
       </div>
     </footer>
