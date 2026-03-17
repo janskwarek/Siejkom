@@ -49,7 +49,7 @@ function ProductCard({ product, index }) {
       <h3 className="product-card__name">{product.name}</h3>
       <p className="product-card__desc">{product.desc}</p>
       <a href="/kontakt" className="product-card__cta">
-        Zapytaj o cenę →
+        Zamów →
       </a>
     </div>
   );

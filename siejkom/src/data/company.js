@@ -12,6 +12,7 @@ export const COMPANY = {
 };
 
 export const NAV_LINKS = [
+  { label: "Strona Główna", path: "/" },
   { label: "Oferta", path: "/oferta" },
   { label: "Flota", path: "/transport" },
   { label: "Realizacje", path: "/realizacje" },
