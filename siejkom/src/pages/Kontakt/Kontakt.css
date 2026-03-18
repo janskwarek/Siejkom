@@ -259,6 +259,7 @@
   width: 100%;
   outline: none;
   transition: border-color 0.2s;
+  appearance: textfield;
   -moz-appearance: textfield;
 }
 .ilosc-input::-webkit-outer-spin-button,
