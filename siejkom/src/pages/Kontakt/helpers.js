@@ -106,10 +106,15 @@ export function obliczCene(z) {
 // ── Walidacja kroku Dane ──
 export function walidujDane(z) {
   const e = {};
+  if (!z.adres.trim() || z.adres.trim().length < 5) e.adres = "Adres za krótki";
+  if (!z.data) e.data = "Wybierz datę dostawy";
+  if (!z.godzina) e.godzina = "Wybierz godzinę dostawy";
+
   if (!z.name.trim() || z.name.trim().length < 3)
     e.name = "Wpisz imię i nazwisko (min. 3 znaki)";
   else if (!/^[\p{L}\s'-]{3,}$/u.test(z.name.trim()))
     e.name = "Tylko litery i spacje";
+  if (z.nip && z.nip.length !== 10) e.nip = "NIP musi mieć 10 cyfr";
   if (!/^(\+48\s?)?(\d[\s-]?){9}$/.test(z.phone.replace(/\s/g, "")))
     e.phone = "Podaj poprawny numer (9 cyfr, np. +48 600 000 000)";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(z.email))
@@ -124,7 +129,10 @@ export async function wyslijEmail(z, cena) {
   const PUBLIC_KEY = "TWOJ_PUBLIC_KEY";
 
   const emailjs = window.emailjs;
-  if (!emailjs) throw new Error("EmailJS nie załadowany");
+  if (!emailjs)
+    throw new Error(
+      "Wiadomosc nie wyslana, przepraszamy za komplikacje i zapraszamy do kontktu telefonicznego",
+    );
 
   const kat = KATEGORIE.find((k) => k.id === z.kategoria)?.label;
   const uslugi =
@@ -138,8 +146,12 @@ export async function wyslijEmail(z, cena) {
     {
       to_email: "maksymilian@siejkom.pl",
       imie: z.name,
+      nip: z.nip,
       telefon: z.phone,
       email: z.email,
+      adres: z.adres,
+      data: z.data,
+      godzina: z.godzina,
       kategoria: kat,
       klasa: cena.prod?.label,
       ilosc: `${z.ilosc} m³`,
@@ -163,6 +175,7 @@ export function mailtoFallback(z, cena) {
   const kat = KATEGORIE.find((k) => k.id === z.kategoria)?.label;
   const body = [
     `Imię: ${z.name}`,
+    `nip: ${z.nip}`,
     `Telefon: ${z.phone}`,
     `Email: ${z.email}`,
     `Kategoria: ${kat}`,

@@ -5,10 +5,10 @@ export default function KrokUslugi({ z, setZ }) {
   const ilosc_num = parseFloat(z.ilosc) || 0;
 
   const toggle = (id) => {
-    setZ(prev => ({
+    setZ((prev) => ({
       ...prev,
       uslugi: prev.uslugi.includes(id)
-        ? prev.uslugi.filter(x => x !== id)
+        ? prev.uslugi.filter((x) => x !== id)
         : [...prev.uslugi, id],
     }));
   };
@@ -20,10 +20,12 @@ export default function KrokUslugi({ z, setZ }) {
         <h2 className="krok__title">Usługi dodatkowe</h2>
       </div>
       <div className="krok__body">
-        <p className="krok__desc">Wybierz jeśli dotyczą Twojego zamówienia. Możesz wybrać kilka opcji.</p>
+        <p className="krok__desc">
+          Wybierz jeśli dotyczą Twojego zamówienia. Możesz wybrać kilka opcji.
+        </p>
         <div className="uslugi-lista">
-          <p className="uslugi-lista__sekcja">🌡 Grzanie betonu w warunkach zimowych</p>
-          {USLUGI_GRZANIE.map(u => (
+          <p className="uslugi-lista__sekcja">Grzanie betonu / chemia</p>
+          {USLUGI_GRZANIE.map((u) => (
             <button
               key={u.id}
               className={`usluga-row ${z.uslugi.includes(u.id) ? "usluga-row--active" : ""}`}
@@ -34,9 +36,13 @@ export default function KrokUslugi({ z, setZ }) {
                 <span className="usluga-row__opis">{u.opis}</span>
               </div>
               <div className="usluga-row__right">
-                <span className="usluga-row__price">+{u.price_m3} PLN<small>/m³</small></span>
+                <span className="usluga-row__price">
+                  +{u.price_m3} PLN<small>/m³</small>
+                </span>
                 {ilosc_num > 0 && (
-                  <span className="usluga-row__total">= +{u.price_m3 * ilosc_num} PLN</span>
+                  <span className="usluga-row__total">
+                    = +{u.price_m3 * ilosc_num} PLN
+                  </span>
                 )}
                 <span className="usluga-row__check">
                   {z.uslugi.includes(u.id) ? "✓" : "+"}
@@ -46,7 +52,9 @@ export default function KrokUslugi({ z, setZ }) {
           ))}
         </div>
         {z.uslugi.length === 0 && (
-          <p className="krok__note">Nie wybrano żadnych usług dodatkowych — możesz przejść dalej.</p>
+          <p className="krok__note">
+            Nie wybrano żadnych usług dodatkowych — możesz przejść dalej.
+          </p>
         )}
       </div>
     </div>

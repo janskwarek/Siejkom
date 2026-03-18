@@ -9,11 +9,11 @@
 /* ── CSS Variables ── */
 :root {
   /* Kolory — dopasowane do siejkom.pl */
-  --color-bg: #0b0f1a;
-  --color-surface: #111827;
-  --color-surface-2: #1a2335;
-  --color-border: #1e2d45;
-  --color-border-soft: #253350;
+  --color-bg: #181e2c;
+  --color-surface: #1f2637;
+  --color-surface-2: #252d40;
+  --color-border: #283450;
+  --color-border-soft: #2f3d5e;
 
   --color-text: #f0f4ff;
   --color-muted: #7a90b0;

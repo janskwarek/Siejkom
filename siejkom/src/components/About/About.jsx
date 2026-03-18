@@ -1,23 +1,23 @@
 // src/components/About/About.jsx
-import SectionTitle from "../SectionTitle/SectionTitle";
-import { useReveal } from "../../hooks/useReveal";
-import { COMPANY, STATS } from "../../data/company";
-import "./About.css";
+import SectionTitle from '../SectionTitle/SectionTitle';
+import { useReveal } from '../../hooks/useReveal';
+import { COMPANY, STATS } from '../../data/company';
+import img from '../../assets/20230915_170846-2048x1153.jpg';
+import './About.css';
 
 export default function About() {
-  const imgRef = useReveal(0.1);
+  const imgRef   = useReveal(0.1);
   const statsRef = useReveal(0.1);
 
   return (
     <section className="section about">
       <div className="container about__inner">
-        {/* Image column */}
+
         <div ref={imgRef} className="about__image-wrap reveal">
           <div className="about__image-placeholder">
-            {/* Zamień src na prawdziwe zdjęcie betonu / budowy */}
             <img
-              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80"
-              alt="Produkcja betonu Siejkom"
+              src={img}
+              alt="Betonowanie fundamentu — Siejkom Invest"
               className="about__image"
             />
           </div>
@@ -27,19 +27,19 @@ export default function About() {
           </div>
         </div>
 
-        {/* Text column */}
         <div className="about__content">
           <SectionTitle
             eyebrow="O nas"
-            title={
-              <>
-                Produkcja
-                <br />
-                Betonu
-              </>
-            }
-            subtitle={`Swoją działalność rozpoczęliśmy w ${COMPANY.founded} roku. Jesteśmy firmą z ${COMPANY.address}, specjalizującą się w produkcji i dostarczaniu betonu. Dbamy o najwyższą jakość naszych produktów, korzystając z wysokiej klasy surowców i nowoczesnych technologii.`}
+            title={<>Produkcja<br />Betonu</>}
+            subtitle={`Swoją działalność rozpoczęliśmy w ${COMPANY.founded} roku. Jesteśmy firmą z Piekar Śląskich, specjalizującą się w produkcji i dostarczaniu betonu. Dbamy o najwyższą jakość naszych produktów, korzystając z wysokiej klasy surowców i nowoczesnych technologii.`}
           />
+
+          <p style={{ marginTop: '1.25rem', color: 'var(--color-muted)', lineHeight: '1.8', fontSize: '1rem' }}>
+            Nasze produkty spełniają wszelkie normy i wymagania, a także są regularnie kontrolowane
+            pod względem jakości. Wyróżnia nas elastyczność i terminowość w realizacji zamówień oraz
+            konkurencyjne ceny. Zaufało nam już wielu Klientów, którzy doceniają nasze doświadczenie
+            i profesjonalizm.
+          </p>
 
           <div ref={statsRef} className="about__stats reveal">
             {STATS.map((s, i) => (

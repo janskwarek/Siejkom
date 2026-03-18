@@ -5,7 +5,7 @@ export const KATEGORIE = [
   {
     id: "towarowy",
     label: "Beton towarowy",
-    icon: "◈",
+    icon: "◉",
     opis: "Fundamenty, słupy, belki",
   },
   {
@@ -17,13 +17,13 @@ export const KATEGORIE = [
   {
     id: "nawierzchniowy",
     label: "Beton nawierzchniowy",
-    icon: "◎",
+    icon: "◉",
     opis: "Drogi, place, parkingi",
   },
   {
     id: "stabilizacje",
     label: "Stabilizacje / Podsypki",
-    icon: "◇",
+    icon: "◉",
     opis: "SCP, podbudowy",
   },
 ];
@@ -124,8 +124,8 @@ export const POMPY = [
   { id: "p52", label: "Pompa 52 mb", rate_m3: 29, rate_h: 450, dojazd: 450 },
 ];
 
-// Próg m³/h dla pompy (wg cennika LUBAR — min. 50 m³ dla stawki za m³)
-export const POMPA_PROG_M3 = 50;
+// Próg m³/h dla pompy (wg cennika— min. 50 m³ dla stawki za m³ -> z polecenia 15 za m³)
+export const POMPA_PROG_M3 = 15;
 
 // Usługi dodatkowe — grzanie zimowe
 export const USLUGI_GRZANIE = [
@@ -148,7 +148,7 @@ export const OPCJE_POMPY = [
   {
     id: "weze_gumowe",
     label: "Dodatkowe węże gumowe",
-    opis: "35 PLN za każdy metr bieżący",
+    opis: "35 PLN za każdy metr bieżący (maks. 50 mb)",
     typ: "mb",
     price_unit: 35,
     unit: "PLN/mb",

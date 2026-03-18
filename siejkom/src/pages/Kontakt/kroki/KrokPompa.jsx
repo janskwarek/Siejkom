@@ -32,7 +32,7 @@ export default function KrokPompa({ z, set }) {
             </>
           ) : (
             <>
-              ℹ️ <strong>Cennik godzinowy</strong> — zamówienie poniżej{" "}
+              <strong>Cennik godzinowy</strong> — zamówienie poniżej{" "}
               {POMPA_PROG_M3} m³ ({z.ilosc} m³). Rozliczenie za m³ dostępne od{" "}
               {POMPA_PROG_M3} m³. Min. 1h.
             </>
@@ -87,8 +87,8 @@ export default function KrokPompa({ z, set }) {
         )}
 
         <p className="krok__note">
-          * Dojazd liczony do 25 km od zakładu na ul. Przyjźni 96 Siemianowice
-          Śląskie. Powyżej 25 km — cena ustalana indywidualnie.
+          * Dojazd liczony do 25 km od jednego z dwóch zakładów. Powyżej 25 km —
+          cena ustalana indywidualnie.
         </p>
       </div>
     </div>

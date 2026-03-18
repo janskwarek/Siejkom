@@ -54,12 +54,10 @@ export default function KrokOpcjePompy({ z, setZ }) {
                         step="1"
                         placeholder="0"
                         value={z.opcjePompy.weze_gumowe_mb}
-                        onInputChange={(e) => {
-                          const val = Math.min(
-                            parseFloat(e.target.value) || 0,
-                            15,
-                          );
-                          setOpcja("weze_gumowe_mb", val);
+                        onChange={(e) => {
+                          const raw = e.target.value.replace(/\D/g, ""); // tylko cyfry
+                          const num = parseInt(raw) || 0;
+                          setOpcja("weze_gumowe_mb", num > 50 ? "50" : raw);
                         }}
                         className="mb-input"
                       />

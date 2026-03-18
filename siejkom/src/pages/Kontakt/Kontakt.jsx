@@ -22,8 +22,12 @@ import "./Kontakt.css";
 
 const PUSTY_STAN = {
   name: "",
+  nip: "",
   phone: "",
   email: "",
+  adres: "",
+  data: "",
+  godzina: "",
   kategoria: "",
   produkt: "",
   ilosc: "",
