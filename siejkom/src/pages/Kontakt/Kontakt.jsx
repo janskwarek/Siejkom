@@ -1,6 +1,7 @@
 // src/pages/Kontakt/Kontakt.jsx
 import { useState } from "react";
 import { COMPANY } from "../../data/company";
+import { Helmet } from "react-helmet-async";
 import {
   getKroki,
   obliczCene,
@@ -130,6 +131,13 @@ export default function Kontakt() {
 
   return (
     <>
+      <Helmet>
+        <title>Zamów beton — Siejkom Piekary Śląskie</title>
+        <meta
+          name="description"
+          content="Zamów beton online z wyceną. Wybierz klasę betonu, ilość betonu, transport i pompowanie betonu. Szybki kontakt ."
+        />
+      </Helmet>
       <PageHero />
       <section className="section zamowienie">
         <div className="container zamowienie__wrap">

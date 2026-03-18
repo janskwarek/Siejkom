@@ -1,14 +1,12 @@
 /* =============================================
    SIEJKOM — Global Styles
-   Paleta: Granat + Pomarańcz (inspiracja siejkom.pl)
+   Paleta: Granat + Pomarańcz 
    Czcionki: Syne (display) + Outfit (body)
    ============================================= */
 
 @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap");
 
-/* ── CSS Variables ── */
 :root {
-  /* Kolory — dopasowane do siejkom.pl */
   --color-bg: #181e2c;
   --color-surface: #1f2637;
   --color-surface-2: #252d40;
@@ -19,31 +17,31 @@
   --color-muted: #7a90b0;
   --color-muted-soft: #9aaec8;
 
-  --color-accent: #e8610a;
-  --color-accent-dark: #c44f06;
-  --color-accent-glow: rgba(232, 97, 10, 0.15);
+  --color-accent: #f3811f;
+  --color-accent-glow: rgba(243, 129, 31, 0.15);
+  --color-accent-dark: #d06810;
   --color-white: #ffffff;
 
-  /* Typografia */
+  /* typografia */
   --font-display: "Syne", sans-serif;
   --font-body: "Outfit", sans-serif;
 
-  /* Spacing */
+  /* spacing */
   --section-pad: clamp(4rem, 10vw, 8rem);
   --container: 1200px;
   --gutter: clamp(1.25rem, 5vw, 2.5rem);
 
-  /* Animacje */
+  /* animacje */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --duration: 0.45s;
 
-  /* Radius */
+  /* radius */
   --radius-sm: 4px;
   --radius: 8px;
   --radius-lg: 16px;
 }
 
-/* ── Reset ── */
+/* ── reset ── */
 *,
 *::before,
 *::after {
@@ -176,7 +174,7 @@ ul {
 }
 .btn--primary:hover {
   background: var(--color-accent-dark);
-  box-shadow: 0 6px 28px rgba(232, 97, 10, 0.3);
+  box-shadow: 0 6px 28px rgba(243, 129, 31, 0.3);
 }
 
 .btn--outline {
@@ -228,7 +226,7 @@ ul {
   padding-top: 10rem;
   padding-bottom: 5rem;
   background:
-    linear-gradient(135deg, rgba(232, 97, 10, 0.06) 0%, transparent 50%),
+    linear-gradient(135deg, rgba(243, 129, 31, 0.06) 0%, transparent 50%),
     var(--color-bg);
   border-bottom: 1px solid var(--color-border);
   position: relative;

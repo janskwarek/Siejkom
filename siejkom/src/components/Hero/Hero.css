@@ -97,6 +97,8 @@
 .hero__title {
   animation: fadeUp 0.8s 0.1s var(--ease-out) both;
   color: var(--color-white);
+  font-size: clamp(2.4rem, 6.5vw, 6rem); /* ← mniejszy niż globalny h1 */
+  line-height: 1.08;
 }
 .hero__title-accent {
   color: var(--color-accent);

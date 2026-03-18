@@ -10,7 +10,7 @@ import Oferta from "./pages/Oferta/Oferta";
 import Transport from "./pages/Transport/Transport";
 import Realizacje from "./pages/Realizacje/Realizacje";
 import Kontakt from "./pages/Kontakt/Kontakt";
-
+import { HelmetProvider } from "react-helmet-async";
 import "./styles/global.css";
 
 // Scroll to top on route change
@@ -69,8 +69,10 @@ function AppLayout() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <AppLayout />
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <AppLayout />
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }

@@ -1,5 +1,6 @@
 /* src/pages/Transport/Transport.css */
 
+/* ── Flota (gruszki/pompogruszki) — 3 kolumny ── */
 .fleet__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -8,62 +9,177 @@
 }
 
 .fleet-card {
-  padding: 3rem 2.5rem;
+  padding: 2.5rem 2rem;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
+  border-radius: var(--radius);
   text-align: center;
   transition:
     border-color 0.3s,
-    transform 0.3s;
+    transform 0.3s,
+    box-shadow 0.3s;
 }
 .fleet-card:hover {
-  border-color: var(--color-accent);
+  border-color: rgba(243, 129, 31, 0.4);
   transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
 .fleet-card__icon {
-  font-size: 2.5rem;
-  margin-bottom: 1.25rem;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 1.5rem;
+  background: var(--color-accent-glow);
+  border: 1px solid rgba(243, 129, 31, 0.2);
+  border-radius: var(--radius);
+  color: var(--color-accent);
+}
+.fleet-card__icon svg {
+  width: 26px;
+  height: 26px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .fleet-card__type {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: var(--color-white);
   margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
 }
 .fleet-card__desc {
   font-size: 0.9rem;
   color: var(--color-muted);
+  line-height: 1.7;
 }
 
-/* Advantages */
+/* ── Pompy — 4 kolumny w jednym rzędzie ── */
+
+.pompy__grid {
+  margin-top: 5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 2rem;
+}
+.pompa-card {
+  padding: 2rem 1.5rem;
+  background: var(--color-surface);
+  transition: background 0.2s;
+  position: relative;
+}
+.pompa-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease-out);
+}
+.pompa-card:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+.pompa-card:hover::before {
+  transform: scaleX(1);
+}
+
+.pompa-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--color-accent-glow);
+  border: 1px solid rgba(243, 129, 31, 0.2);
+  border-radius: var(--radius-sm);
+  color: var(--color-accent);
+  margin-bottom: 1.1rem;
+}
+.pompa-card__icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.pompa-card__label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+.pompa-card__desc {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+}
+
+/* ── Advantages ── */
 .transport__advantages {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
   border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
   margin-top: 5rem;
 }
 .transport__adv {
-  padding: 2.5rem 2rem;
+  padding: 2rem 1.75rem;
   background: var(--color-surface);
 }
 .transport__adv-label {
   display: block;
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: 1.15rem;
+  font-weight: 700;
   color: var(--color-accent);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
 }
 .transport__adv-desc {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--color-muted);
+  line-height: 1.65;
 }
 
+/* ── Responsive ── */
 @media (max-width: 900px) {
   .fleet__grid {
     grid-template-columns: 1fr;
   }
+  .pompy__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .transport__advantages {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+@media (max-width: 500px) {
+  .pompy__grid {
+    grid-template-columns: 1fr;
+  }
+  .transport__advantages {
+    grid-template-columns: 1fr;
+  }
+}
+.section-title__eyebrow {
+  margin-top: 4rem;
 }

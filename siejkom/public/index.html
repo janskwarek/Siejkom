@@ -1,43 +1,93 @@
 <!doctype html>
-<html lang="en">
+<html lang="pl">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#181e2c" />
+    <title>Siejkom</title>
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Producent betonu od 2015 roku. Beton towarowy, beton posadzkowy,  nawierzchniowy, stabilizacje SCP. Transport i pompowanie na terenie Śląska. Piekary Śląskie, Siemianowice Śląskie."
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <meta
+      name="keywords"
+      content="beton Piekary Śląskie, producent betonu Śląsk, beton towarowy, beton posadzkowy, pompowanie betonu, transport betonu, Siejkom, wytwórnia betonu, beton Siemianowice"
+    />
+    <meta name="author" content="Siejkom Invest" />
+    <meta name="robots" content="index, follow" />
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <!-- Open Graph (Facebook, LinkedIn) -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Siejkom Invest — Producent Betonu Piekary Śląskie"
+    />
+    <meta
+      property="og:description"
+      content="Producent betonu od 2015 roku. Beton C8/10–C50/60, transport i pompowanie na terenie Śląska."
+    />
+    <meta property="og:url" content="https://siejkom.pl" />
+    <meta property="og:site_name" content="Siejkom Invest" />
+    <meta property="og:locale" content="pl_PL" />
+
+    <!-- Ikony -->
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- Schema.org — LocalBusiness -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Siejkom Invest",
+        "description": "Producent betonu towarowego, posadzkowego i nawierzchniowego. Transport i pompowanie betonu na terenie Śląska.",
+        "url": "https://siejkom.pl",
+        "telephone": "+48537373737",
+        "email": "biuro@siejkombetony.pl",
+        "foundingDate": "2015",
+        "address": [
+          {
+            "@type": "PostalAddress",
+            "streetAddress": "ul. Parkowa 11",
+            "addressLocality": "Piekary Śląskie",
+            "postalCode": "41-940",
+            "addressRegion": "śląskie",
+            "addressCountry": "PL"
+          },
+          {
+            "@type": "PostalAddress",
+            "streetAddress": "ul. Towarowa 9",
+            "addressLocality": "Siemianowice Śląskie",
+            "postalCode": "41-103",
+            "addressRegion": "śląskie",
+            "addressCountry": "PL"
+          }
+        ],
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 50.3652,
+          "longitude": 18.9479
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "07:00",
+          "closes": "17:00"
+        },
+        "areaServed": {
+          "@type": "State",
+          "name": "Śląsk"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Beton towarowy, posadzkowy, nawierzchniowy, stabilizacje SCP"
+        }
+      }
+    </script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>Włącz JavaScript aby korzystać z tej strony.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>
