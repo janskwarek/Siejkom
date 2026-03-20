@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# Siejkom Invest - Strona Internetowa
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Projekt strony internetowej dla firmy **Siejkom Invest**, producenta betonu działającego na terenie Śląska (Piekary Śląskie, Siemianowice Śląskie). Aplikacja służy jako wizytówka firmowa, prezentująca ofertę, realizacje, flotę transportową oraz umożliwiająca kontakt z firmą.
 
-## Available Scripts
+## 🛠 Technologie i Narzędzia
 
-In the project directory, you can run:
+Projekt został stworzony przy użyciu **React** (Create React App) z wykorzystaniem nowoczesnych narzędzi i bibliotek front-endowych:
 
-### `npm start`
+- **React 18** - biblioteka do budowy interfejsów użytkownika.
+- **React Router v6** - do obsługi nawigacji (Single Page Application).
+- **React Helmet Async** - do dynamicznego zarządzania tagami meta i optymalizacji SEO w widokach SPA.
+- **EmailJS** - do bezpiecznej obsługi formularza kontaktowego bez konieczności utrzymywania własnego backendu.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📁 Struktura Projektu
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Główny kod aplikacji znajduje się w folderze `src/`.
 
-### `npm test`
+- `src/components/` - uniwersalne, reużywalne komponenty interfejsu wizualnego (np. `Navbar`, `Footer`, `Hero`, `CtaBanner`, `Features`, `MapSection`, `Services`).
+- `src/pages/` - główne widoki/podstrony, podpięte bezpośrednio pod system routingu:
+  - `Home` - Strona główna.
+  - `Oferta` - Szczegółowa oferta firmy (beton towarowy, posadzkowy, stabilizacje SCP itp.).
+  - `Transport` - Informacje o flocie pojazdów (np. transport i pompowanie).
+  - `Realizacje` - Prezentacja zrealizowanych projektów.
+  - `Kontakt` - Formularz kontaktowy i dane teleadresowe.
+- `src/data/` - pliki przechowujące statyczne dane (np. konfiguracja, stałe treści na podstrony).
+- `src/styles/` - pliki globalnych stylów (np. `global.css`).
+- `src/hooks/` - customowe hooki React (narzędzia ponownego użycia logiki).
+- `src/assets/` - grafiki, ikony, zdjęcia statyczne i inne zasoby wizualne.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 Uruchomienie lokalne
 
-### `npm run build`
+Aby uruchomić projekt na własnym środowisku, wykonaj poniższe kroki.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Wymagania wstępne
+- Zainstalowane środowisko **Node.js** (zalecana wersja LTS) oraz menedżer pakietów **npm**.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Instalacja i start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Zainstaluj zależności:
+   ```bash
+   npm install
+   ```
 
-### `npm run eject`
+2. Uruchom aplikację w trybie deweloperskim:
+   ```bash
+   npm start
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Aplikacja będzie dostępna pod adresem [http://localhost:3000](http://localhost:3000). Strona odświeży się automatycznie po zapisaniu jakichkolwiek zmian. Błędy lintera pojawią się w logach konsoli.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📦 Budowanie do produkcji
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Aby przygotować zoptymalizowaną (zminifikowaną) wersję aplikacji gotową do wdrożenia (np. na serwer hostingowy):
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm run build
+```
 
-## Learn More
+Pliki gotowe do wdrożenia zostaną wygenerowane w folderze `build/`. Bundle reacta zostanie zoptymalizowany dla jak najwyższej wydajności, a pliki otrzymają hashe gwarantujące odświeżenie cache'u docelowych użytkowników.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🌍 SEO i Meta Tagi
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Projekt posiada wdrożone zaawansowane dobre praktyki SEO – w głównym pliku `public/index.html` umieszczono odpowiednie opisy oraz metadane ustrukturyzowane w formacie **Schema.org** (LocalBusiness), z uwzględnieniem danych teleadresowych (Piekary Śląskie, Siemianowice Śląskie), godzin otwarcia oraz obszaru działalności i współrzędnych geograficznych. Pozostałe specyficzne meta-tagi dla podstron są zmieniane w locie za pomocą biblioteki `Helmet`.
