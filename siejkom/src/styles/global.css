@@ -31,8 +31,9 @@
   --container: 1200px;
   --gutter: clamp(1.25rem, 5vw, 2.5rem);
 
-  /* animacje */
+  /* motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --duration: 0.45s;
 
   /* radius */
@@ -48,6 +49,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-overflow: clip;
 }
 
 html {
@@ -61,6 +63,7 @@ body {
   font-family: var(--font-body);
   font-weight: 400;
   line-height: 1.7;
+  overflow-wrap: anywhere;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -89,6 +92,7 @@ body {
   max-width: var(--container);
   margin-inline: auto;
   padding-inline: var(--gutter);
+  min-width: 0;
 }
 
 /* Typography */
@@ -140,7 +144,7 @@ ul {
   list-style: none;
 }
 
-/* Buttons */
+/* Buttons - Premium Spring Physics */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -154,27 +158,37 @@ ul {
   border: none;
   border-radius: var(--radius-sm);
   transition:
-    transform 0.2s var(--ease-out),
-    background 0.2s,
-    box-shadow 0.2s,
-    border-color 0.2s;
+    transform 0.3s var(--ease-spring),
+    background 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out),
+    border-color 0.3s;
   white-space: nowrap;
+  position: relative;
+  overflow: hidden;
 }
+
 .btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
+
 .btn:active {
-  transform: translateY(0);
+  transform: translateY(-1px) scale(0.98);
 }
 
 .btn--primary {
   background: var(--color-accent);
   color: var(--color-white);
-  box-shadow: 0 4px 20px var(--color-accent-glow);
+  box-shadow: 0 8px 24px var(--color-accent-glow);
+  font-weight: 600;
 }
+
 .btn--primary:hover {
   background: var(--color-accent-dark);
-  box-shadow: 0 6px 28px rgba(243, 129, 31, 0.3);
+  box-shadow: 0 12px 36px rgba(243, 129, 31, 0.4);
+}
+
+.btn--primary:active {
+  box-shadow: 0 4px 12px rgba(243, 129, 31, 0.3);
 }
 
 .btn--outline {
@@ -182,27 +196,16 @@ ul {
   color: var(--color-text);
   border: 1.5px solid var(--color-border-soft);
 }
+
 .btn--outline:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
+  background: rgba(243, 129, 31, 0.04);
 }
 
 /* Section */
 .section {
   padding-block: var(--section-pad);
-}
-
-/* Reveal animation */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition:
-    opacity 0.65s var(--ease-out),
-    transform 0.65s var(--ease-out);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* Card base */
@@ -211,14 +214,15 @@ ul {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   transition:
-    border-color 0.3s,
-    box-shadow 0.3s,
-    transform 0.3s;
+    border-color 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out),
+    transform 0.3s var(--ease-out);
 }
+
 .card:hover {
   border-color: var(--color-border-soft);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
-  transform: translateY(-3px);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+  transform: translateY(-4px);
 }
 
 /* Page hero (shared across pages) */
@@ -232,6 +236,7 @@ ul {
   position: relative;
   overflow: hidden;
 }
+
 .page-hero__eyebrow {
   font-size: 0.72rem;
   font-weight: 600;
@@ -243,6 +248,7 @@ ul {
   align-items: center;
   gap: 0.6rem;
 }
+
 .page-hero__eyebrow::before {
   content: "";
   display: block;
@@ -251,6 +257,7 @@ ul {
   background: var(--color-accent);
   border-radius: 2px;
 }
+
 .page-hero__title {
   color: var(--color-white);
   font-size: clamp(2.8rem, 7vw, 6.5rem);

@@ -16,6 +16,10 @@ export default function Home() {
           name="description"
           content="Producent betonu od 2015 roku. Beton C8/10–C50/60, transport, pompowanie. Piekary Śląskie i Siemianowice Śląskie."
         />
+        <link rel="canonical" href="https://siejkom.pl/" />
+        <meta property="og:title" content="Siejkom — Producent betonu Piekary Śląskie" />
+        <meta property="og:description" content="Producent betonu od 2015 roku. Beton C8/10–C50/60, transport, pompowanie. Piekary Śląskie i Siemianowice Śląskie." />
+        <meta property="og:url" content="https://siejkom.pl/" />
       </Helmet>
       <Hero />
       <Services />

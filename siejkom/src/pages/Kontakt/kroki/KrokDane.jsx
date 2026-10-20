@@ -119,6 +119,27 @@ export default function KrokDane({ z, set, errors, setErrors }) {
           </div>
         </div>
         <p className="krok__note">* Pola wymagane</p>
+        <div className="privacy-notice">
+          <h3>Informacja o przetwarzaniu danych</h3>
+          <p>
+            Dane z formularza wykorzystujemy wyłącznie do obsługi zapytania,
+            przygotowania wyceny i realizacji zamówienia — nie do celów
+            marketingowych. Podstawą przetwarzania jest podjęcie działań przed
+            zawarciem umowy lub jej realizacja (art. 6 ust. 1 lit. b RODO).
+            Podanie danych jest dobrowolne, ale niezbędne do obsługi zapytania.
+          </p>
+          <p>
+            Wiadomość zostanie przygotowana w Twoim programie pocztowym i
+            wysłana dopiero po zatwierdzeniu jej przez Ciebie. Jej odbiorcą
+            będzie Siejkom Invest; wiadomość przejdzie przez dostawców poczty
+            elektronicznej. Dane przechowujemy przez czas obsługi zapytania i
+            realizacji umowy, a dokumenty — jeśli wymagają tego przepisy — przez
+            wymagany prawem okres. Przysługuje Ci prawo dostępu do danych, ich
+            sprostowania, usunięcia, ograniczenia przetwarzania i przenoszenia
+            oraz wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych.
+            Dane nie podlegają zautomatyzowanemu podejmowaniu decyzji.
+          </p>
+        </div>
       </div>
     </div>
   );

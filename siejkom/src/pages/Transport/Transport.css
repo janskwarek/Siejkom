@@ -3,7 +3,7 @@
 /* ── Flota (gruszki/pompogruszki) — 3 kolumny ── */
 .fleet__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.5rem;
   margin-top: 4rem;
 }
@@ -63,7 +63,7 @@
 .pompy__grid {
   margin-top: 5rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
@@ -134,7 +134,7 @@
 /* ── Advantages ── */
 .transport__advantages {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);

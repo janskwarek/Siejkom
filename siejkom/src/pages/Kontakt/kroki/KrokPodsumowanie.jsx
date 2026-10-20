@@ -5,8 +5,6 @@ export default function KrokPodsumowanie({
   z,
   cena,
   kroki,
-  error,
-  sending,
   onWysylka,
   set,
 }) {
@@ -147,14 +145,11 @@ export default function KrokPodsumowanie({
           </div>
         </div>
 
-        {error && <div className="alert-error">{error}</div>}
-
         <button
           className="btn btn--primary zamowienie-submit"
           onClick={onWysylka}
-          disabled={sending}
         >
-          {sending ? "Wysyłanie..." : "Wyślij zamówienie →"}
+          Otwórz wiadomość e-mail →
         </button>
       </div>
     </div>

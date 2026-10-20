@@ -1,5 +1,5 @@
 // src/components/SectionTitle/SectionTitle.jsx
-import { useReveal } from "../../hooks/useReveal";
+import { motion } from "framer-motion";
 import "./SectionTitle.css";
 
 /**
@@ -15,18 +15,47 @@ export default function SectionTitle({
   subtitle,
   align = "left",
 }) {
-  const ref = useReveal();
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 100, damping: 20 },
+    },
+  };
 
   return (
-    <div ref={ref} className={`section-title section-title--${align} reveal`}>
+    <motion.div
+      className={`section-title section-title--${align}`}
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.5 }}
+    >
       {eyebrow && (
-        <p className="section-title__eyebrow">
+        <motion.p className="section-title__eyebrow" variants={itemVariants}>
           <span className="section-title__line" />
           {eyebrow}
-        </p>
+        </motion.p>
       )}
-      <h2 className="section-title__heading">{title}</h2>
-      {subtitle && <p className="section-title__subtitle">{subtitle}</p>}
-    </div>
+      <motion.h2 className="section-title__heading" variants={itemVariants}>
+        {title}
+      </motion.h2>
+      {subtitle && (
+        <motion.p className="section-title__subtitle" variants={itemVariants}>
+          {subtitle}
+        </motion.p>
+      )}
+    </motion.div>
   );
 }

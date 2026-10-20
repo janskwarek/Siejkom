@@ -1,4 +1,5 @@
 // src/pages/Realizacje/Realizacje.jsx
+import { useState } from "react";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import CtaBanner from "../../components/CtaBanner/CtaBanner";
 import { useReveal } from "../../hooks/useReveal";
@@ -63,13 +64,14 @@ const PROJECTS = [
   },
 ];
 
-function ProjectCard({ project, index }) {
+function ProjectCard({ project, index, onClick }) {
   const ref = useReveal();
   return (
     <div
       ref={ref}
       className="project-card reveal"
       style={{ transitionDelay: `${index * 0.08}s` }}
+      onClick={() => onClick(project)}
     >
       <div className="project-card__img-wrap">
         <img
@@ -89,6 +91,8 @@ function ProjectCard({ project, index }) {
 }
 
 export default function Realizacje() {
+  const [selectedProject, setSelectedProject] = useState(null);
+
   return (
     <>
       <Helmet>
@@ -124,11 +128,40 @@ export default function Realizacje() {
           />
           <div className="projects__grid">
             {PROJECTS.map((p, i) => (
-              <ProjectCard key={p.id} project={p} index={i} />
+              <ProjectCard key={p.id} project={p} index={i} onClick={setSelectedProject} />
             ))}
           </div>
         </div>
       </section>
+
+      {/* Lightbox Overlay */}
+      <div
+        className={`lightbox ${selectedProject ? "lightbox--open" : ""}`}
+        onClick={() => setSelectedProject(null)}
+      >
+        <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
+          {selectedProject && (
+            <>
+              <img
+                src={selectedProject.img}
+                alt={selectedProject.alt}
+                className="lightbox__img"
+              />
+              <button
+                className="lightbox__close"
+                onClick={() => setSelectedProject(null)}
+                aria-label="Zamknij"
+              >
+                &times;
+              </button>
+              <div className="lightbox__caption">
+                <h4>{selectedProject.title}</h4>
+                <p>{selectedProject.type} | {selectedProject.year}</p>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
 
       <CtaBanner />
     </>

@@ -1,33 +1,54 @@
 // src/components/Services/Services.jsx
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ArrowRight } from "@phosphor-icons/react";
 import { SERVICES } from "../../data/company";
 import SectionTitle from "../SectionTitle/SectionTitle";
-import { useReveal } from "../../hooks/useReveal";
 import "./Services.css";
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 32 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 100, damping: 22 },
+  },
+};
+
 function ServiceCard({ service, index }) {
-  const ref = useReveal();
   return (
-    <div
-      ref={ref}
-      className="service-card reveal"
-      style={{ transitionDelay: `${index * 0.1}s` }}
+    <motion.div
+      variants={cardVariants}
+      whileHover={{ y: -8, transition: { type: "spring", stiffness: 200 } }}
+      className="service-card"
     >
-      <span className="service-card__number">0{index + 1}</span>
+      <div className="service-card__glow" />
+
+      <div className="service-card__header">
+        <span className="service-card__number">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+      </div>
+
       <h3 className="service-card__title">{service.title}</h3>
       <p className="service-card__desc">{service.desc}</p>
+
       <Link to={service.link} className="service-card__link">
         Dowiedz się więcej
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-          <path
-            d="M3 8h10M9 4l4 4-4 4"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
+        <ArrowRight size={14} weight="bold" />
       </Link>
-    </div>
+    </motion.div>
   );
 }
 
@@ -46,11 +67,18 @@ export default function Services() {
           }
           subtitle="Kompleksowe rozwiązania w branży budowlanej — od produkcji betonu po gotowy dom."
         />
-        <div className="services__grid">
-          {SERVICES.map((s, i) => (
-            <ServiceCard key={s.id} service={s} index={i} />
+
+        <motion.div
+          className="services__grid"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          {SERVICES.map((service, index) => (
+            <ServiceCard key={service.id} service={service} index={index} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

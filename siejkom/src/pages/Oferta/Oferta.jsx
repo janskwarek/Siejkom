@@ -216,6 +216,10 @@ export default function Oferta() {
           name="description"
           content="Beton towarowy C8/10–C50/60, beton posadzkowy, beton nawierzchniowy, stabilizacje SCP. Zamów online z wyceną. Piekary Śląskie, Siemianowice Śląskie."
         />
+        <link rel="canonical" href="https://siejkom.pl/oferta" />
+        <meta property="og:title" content="Oferta — Siejkom Piekary Śląskie Siemianowice Śląskie" />
+        <meta property="og:description" content="Beton towarowy C8/10–C50/60, beton posadzkowy, beton nawierzchniowy, stabilizacje SCP. Zamów online z wyceną. Piekary Śląskie, Siemianowice Śląskie." />
+        <meta property="og:url" content="https://siejkom.pl/oferta" />
       </Helmet>
 
       <div className="page-hero">

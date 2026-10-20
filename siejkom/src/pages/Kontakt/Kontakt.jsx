@@ -6,8 +6,7 @@ import {
   getKroki,
   obliczCene,
   walidujDane,
-  wyslijEmail,
-  mailtoFallback,
+  przygotujWiadomoscEmail,
 } from "./helpers";
 import KrokDane from "./kroki/KrokDane";
 import KrokKategoria from "./kroki/KrokKategoria";
@@ -57,17 +56,15 @@ function PageHero() {
 
 export default function Kontakt() {
   const [krok, setKrok] = useState(0);
-  const [sent, setSent] = useState(false);
-  const [sending, setSending] = useState(false);
-  const [error, setError] = useState("");
+  const [emailOpened, setEmailOpened] = useState(false);
   const [errors, setErrors] = useState({});
   const [z, setZ] = useState(PUSTY_STAN);
 
   const set = (field, val) => setZ((prev) => ({ ...prev, [field]: val }));
   const reset = () => {
-    setSent(false);
     setKrok(0);
     setZ(PUSTY_STAN);
+    setEmailOpened(false);
   };
 
   const kroki = getKroki(z);
@@ -96,32 +93,26 @@ export default function Kontakt() {
     setKrok((k) => k + 1);
   };
 
-  const handleWysylka = async () => {
-    setSending(true);
-    setError("");
-    try {
-      await wyslijEmail(z, cena);
-      setSent(true);
-    } catch {
-      mailtoFallback(z, cena);
-      setSent(true);
-    } finally {
-      setSending(false);
-    }
+  const handleWysylka = () => {
+    window.location.href = przygotujWiadomoscEmail(z, cena);
+    setEmailOpened(true);
   };
 
-  if (sent)
+  if (emailOpened)
     return (
       <>
         <PageHero />
         <section className="section">
           <div className="container">
-            <div className="zamowienie-success">
-              <span className="zamowienie-success__icon">✓</span>
-              <h2>Zamówienie wysłane!</h2>
-              <p>Odezwiemy się najszybciej jak to możliwe.</p>
+            <div className="zamowienie-success" role="status">
+              <h2>Wiadomość przygotowana</h2>
+              <p>
+                Przygotowaliśmy wiadomość e-mail. Jeśli otworzył się program
+                pocztowy, zatwierdź jej wysłanie w tym programie. Jeśli nie,
+                napisz do nas na adres {COMPANY.email}.
+              </p>
               <button className="btn btn--outline" onClick={reset}>
-                Złóż kolejne zamówienie
+                Wróć do formularza
               </button>
             </div>
           </div>
@@ -137,6 +128,10 @@ export default function Kontakt() {
           name="description"
           content="Zamów beton online z wyceną. Wybierz klasę betonu, ilość betonu, transport i pompowanie betonu. Szybki kontakt ."
         />
+        <link rel="canonical" href="https://siejkom.pl/kontakt" />
+        <meta property="og:title" content="Zamów beton — Siejkom Piekary Śląskie" />
+        <meta property="og:description" content="Zamów beton online z wyceną. Wybierz klasę betonu, ilość betonu, transport i pompowanie betonu." />
+        <meta property="og:url" content="https://siejkom.pl/kontakt" />
       </Helmet>
       <PageHero />
       <section className="section zamowienie">
@@ -170,8 +165,6 @@ export default function Kontakt() {
               z={z}
               cena={cena}
               kroki={kroki}
-              error={error}
-              sending={sending}
               onWysylka={handleWysylka}
               set={set}
             />

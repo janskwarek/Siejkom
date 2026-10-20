@@ -98,6 +98,10 @@ export default function Transport() {
           name="description"
           content="Dostawa betonu gruszką 9m³, pompogruszki 24 i 32m³, pompy 32–52 mb. Terminowe dostawy betonu na terenie Śląska i okolic."
         />
+        <link rel="canonical" href="https://siejkom.pl/transport" />
+        <meta property="og:title" content="Transport betonu — Siejkom Piekary Śląskie" />
+        <meta property="og:description" content="Dostawa betonu gruszką 9m³, pompogruszki 24 i 32m³, pompy 32–52 mb. Terminowe dostawy betonu na terenie Śląska i okolic." />
+        <meta property="og:url" content="https://siejkom.pl/transport" />
       </Helmet>
 
       <div className="page-hero">

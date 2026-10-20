@@ -1,12 +1,6 @@
 // src/hooks/useReveal.js
 import { useEffect, useRef } from "react";
 
-/**
- * Attach to any element — adds `.visible` class when it enters the viewport.
- * Usage:
- *   const ref = useReveal();
- *   <div ref={ref} className="reveal">…</div>
- */
 export function useReveal(threshold = 0.15) {
   const ref = useRef(null);
 

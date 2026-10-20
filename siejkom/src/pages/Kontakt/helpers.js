@@ -122,69 +122,33 @@ export function walidujDane(z) {
   return e; // pusty obiekt = brak błędów
 }
 
-// ── Wysyłka przez EmailJS (z fallback na mailto) ──
-export async function wyslijEmail(z, cena) {
-  const SERVICE_ID = "TWOJ_SERVICE_ID";
-  const TEMPLATE_ID = "TWOJ_TEMPLATE_ID";
-  const PUBLIC_KEY = "TWOJ_PUBLIC_KEY";
-
-  const emailjs = window.emailjs;
-  if (!emailjs)
-    throw new Error(
-      "Wiadomosc nie wyslana, przepraszamy za komplikacje i zapraszamy do kontktu telefonicznego",
-    );
-
+// ── Przygotowuje wiadomość w domyślnym programie pocztowym ──
+export function przygotujWiadomoscEmail(z, cena) {
   const kat = KATEGORIE.find((k) => k.id === z.kategoria)?.label;
   const uslugi =
     (z.uslugi || [])
       .map((u) => USLUGI_GRZANIE.find((x) => x.id === u)?.label)
       .join(", ") || "—";
-
-  return emailjs.send(
-    SERVICE_ID,
-    TEMPLATE_ID,
-    {
-      to_email: "maksymilian@siejkom.pl",
-      imie: z.name,
-      nip: z.nip,
-      telefon: z.phone,
-      email: z.email,
-      adres: z.adres,
-      data: z.data,
-      godzina: z.godzina,
-      kategoria: kat,
-      klasa: cena.prod?.label,
-      ilosc: `${z.ilosc} m³`,
-      transport: cena.transport?.label,
-      uslugi,
-      pompa: cena.pump?.label || "—",
-      opcje_pompy: cena.opcjeBreakdown.map((o) => o.label).join(", ") || "—",
-      cena_beton: `${cena.cenaBeton} PLN`,
-      cena_grzanie: cena.cenaGrzanie ? `${cena.cenaGrzanie} PLN` : "—",
-      cena_pompa: cena.cenaPompa ? `${cena.cenaPompa} PLN` : "—",
-      cena_opcje: cena.cenaOpcjePompy ? `${cena.cenaOpcjePompy} PLN` : "—",
-      cena_razem: `${cena.razem} PLN`,
-      wiadomosc: z.wiadomosc || "—",
-    },
-    PUBLIC_KEY,
-  );
-}
-
-// ── Mailto fallback ──
-export function mailtoFallback(z, cena) {
-  const kat = KATEGORIE.find((k) => k.id === z.kategoria)?.label;
+  const opcjePompy =
+    cena.opcjeBreakdown.map((opcja) => opcja.label).join(", ") || "—";
   const body = [
     `Imię: ${z.name}`,
-    `nip: ${z.nip}`,
+    `NIP: ${z.nip || "—"}`,
     `Telefon: ${z.phone}`,
     `Email: ${z.email}`,
+    `Adres budowy: ${z.adres}`,
+    `Termin dostawy: ${z.data}, ${z.godzina}`,
     `Kategoria: ${kat}`,
-    `Klasa: ${cena?.prod?.label}`,
+    `Klasa: ${cena.prod?.label}`,
     `Ilość: ${z.ilosc} m³`,
-    `Transport: ${cena?.transport?.label}`,
-    `Pompa: ${cena?.pump?.label || "—"}`,
-    `Szacowana cena: ${cena?.razem} PLN`,
+    `Transport: ${cena.transport?.label}`,
+    `Usługi dodatkowe: ${uslugi}`,
+    `Pompa: ${cena.pump?.label || "—"}`,
+    `Opcje pompy: ${opcjePompy}`,
+    `Szacowana cena netto: ${cena.razem} PLN`,
     `Uwagi: ${z.wiadomosc || "—"}`,
-  ].join("%0A");
-  window.location.href = `mailto:maksymilian@siejkom.pl?subject=Zamówienie betonu - ${z.name}&body=${body}`;
+  ].join("\r\n");
+  const subject = `Zamówienie betonu - ${z.name}`;
+
+  return `mailto:maksymilian@siejkom.pl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }

@@ -3,7 +3,7 @@
 /* ── Layout ── */
 .zamowienie__wrap {
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: minmax(0, 1fr) 320px;
   grid-template-rows: auto 1fr auto;
   gap: 2rem 3rem;
   align-items: start;
@@ -529,6 +529,7 @@ a.kontakt__detail-item:hover {
   font-size: 0.95rem;
   font-weight: 500;
   color: var(--color-white);
+  overflow-wrap: anywhere;
 }
 
 /* ── Form fields (shared) ── */
@@ -574,10 +575,34 @@ a.kontakt__detail-item:hover {
   box-shadow: 0 0 0 3px var(--color-accent-glow);
 }
 
+.privacy-notice {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.02);
+}
+.privacy-notice h3 {
+  font-size: 0.9rem;
+}
+.privacy-notice p {
+  max-width: 100%;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+.privacy-notice a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
 /* ── Responsive ── */
 @media (max-width: 1000px) {
   .zamowienie__wrap {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .kontakt__details--aside {
     grid-column: 1;
@@ -588,6 +613,9 @@ a.kontakt__detail-item:hover {
   .kontakt__detail-item {
     flex: 1;
     min-width: 200px;
+  }
+  .kontakt__detail-item > div {
+    min-width: 0;
   }
 }
 @media (max-width: 700px) {
