@@ -113,7 +113,6 @@
   color: var(--color-border);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .footer__inner {
     grid-template-columns: 1fr;
