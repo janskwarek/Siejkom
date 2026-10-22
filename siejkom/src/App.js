@@ -11,6 +11,7 @@ import Oferta from "./pages/Oferta/Oferta";
 import Transport from "./pages/Transport/Transport";
 import Realizacje from "./pages/Realizacje/Realizacje";
 import Kontakt from "./pages/Kontakt/Kontakt";
+import Admin from "./pages/Admin/Admin";
 import { HelmetProvider } from "react-helmet-async";
 import "./styles/global.css";
 
@@ -24,10 +25,13 @@ function ScrollToTop() {
 }
 
 function AppLayout() {
+  const { pathname } = useLocation();
+  const isAdmin = pathname === "/admin";
+
   return (
     <>
       <ScrollToTop />
-      <Navbar />
+      {!isAdmin && <Navbar />}
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -35,6 +39,7 @@ function AppLayout() {
           <Route path="/transport" element={<Transport />} />
           <Route path="/realizacje" element={<Realizacje />} />
           <Route path="/kontakt" element={<Kontakt />} />
+          <Route path="/admin" element={<Admin />} />
           {/* 404 */}
           <Route
             path="*"
@@ -63,7 +68,7 @@ function AppLayout() {
           />
         </Routes>
       </main>
-      <Footer />
+      {!isAdmin && <Footer />}
       <SpeedInsights />
     </>
   );
