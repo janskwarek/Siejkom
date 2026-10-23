@@ -1,5 +1,19 @@
 // src/pages/Kontakt/cennik.js
 // Wszystkie stałe cennikowe — edytuj tutaj gdy zmienia się cennik
+import { loadPriceOverrides } from "../Admin/priceOverrides";
+
+const PRICE_OVERRIDES = loadPriceOverrides();
+
+const applyProductOverrides = (products, overrides) =>
+  Object.fromEntries(
+    Object.entries(products).map(([category, items]) => [
+      category,
+      items?.map((item) => ({
+        ...item,
+        price: overrides?.[item.id] ?? item.price,
+      })) ?? null,
+    ]),
+  );
 
 export const KATEGORIE = [
   {
@@ -29,7 +43,7 @@ export const KATEGORIE = [
 ];
 
 // S1 = loco wytwórnia
-export const PRODUKTY_S1 = {
+const DEFAULT_PRODUKTY_S1 = {
   towarowy: [
     { id: "c8s1", label: "C 8/10 S1", price: 325 },
     { id: "c12s1", label: "C 12/15 S1", price: 335 },
@@ -60,7 +74,7 @@ export const PRODUKTY_S1 = {
 };
 
 // S3 = franco budowa do 15 km (tylko przy gruszce)
-export const PRODUKTY_S3 = {
+const DEFAULT_PRODUKTY_S3 = {
   towarowy: [
     { id: "c8s3", label: "C 8/10 S3", price: 365 },
     { id: "c12s3", label: "C 12/15 S3", price: 375 },
@@ -85,6 +99,15 @@ export const PRODUKTY_S3 = {
   ],
   stabilizacje: null,
 };
+
+export const PRODUKTY_S1 = applyProductOverrides(
+  DEFAULT_PRODUKTY_S1,
+  PRICE_OVERRIDES.s1,
+);
+export const PRODUKTY_S3 = applyProductOverrides(
+  DEFAULT_PRODUKTY_S3,
+  PRICE_OVERRIDES.s3,
+);
 
 // Transport dostępny per kategoria
 export const TRANSPORT_MAP = {
@@ -116,19 +139,25 @@ export const TRANSPORT_OPCJE = [
 ];
 
 // Pompy — rozliczenie za h (poniżej 50 m³) lub za m³ (od 50 m³)
-export const POMPY = [
+const DEFAULT_POMPY = [
   { id: "brak", label: "Bez pompy", rate_m3: 0, rate_h: 0, dojazd: 0 },
   { id: "p32", label: "Pompa 32 mb", rate_m3: 20, rate_h: 350, dojazd: 300 },
   { id: "p40", label: "Pompa 40 mb", rate_m3: 25, rate_h: 380, dojazd: 350 },
   { id: "p50", label: "Pompa 50 mb", rate_m3: 29, rate_h: 450, dojazd: 450 },
   { id: "p52", label: "Pompa 52 mb", rate_m3: 29, rate_h: 450, dojazd: 450 },
 ];
+export const POMPY = DEFAULT_POMPY.map((pump) => ({
+  ...pump,
+  ...PRICE_OVERRIDES.pumps?.[pump.id],
+}));
 
 // Próg m³/h dla pompy (wg cennika— min. 50 m³ dla stawki za m³ -> z polecenia 15 za m³)
 export const POMPA_PROG_M3 = 15;
+export const DOPLATA_MALE_ZAMOWIENIE =
+  PRICE_OVERRIDES.transport?.smallOrder ?? 400;
 
 // Usługi dodatkowe — grzanie zimowe
-export const USLUGI_GRZANIE = [
+const DEFAULT_USLUGI_GRZANIE = [
   {
     id: "grzanie_temp",
     label: "+5°C do −10°C",
@@ -142,9 +171,13 @@ export const USLUGI_GRZANIE = [
     price_m3: 25,
   },
 ];
+export const USLUGI_GRZANIE = DEFAULT_USLUGI_GRZANIE.map((service) => ({
+  ...service,
+  price_m3: PRICE_OVERRIDES.heating?.[service.id] ?? service.price_m3,
+}));
 
 // Opcje dodatkowe pompy
-export const OPCJE_POMPY = [
+const DEFAULT_OPCJE_POMPY = [
   {
     id: "weze_gumowe",
     label: "Dodatkowe węże gumowe",
@@ -162,3 +195,49 @@ export const OPCJE_POMPY = [
     unit: "PLN",
   },
 ];
+export const OPCJE_POMPY = DEFAULT_OPCJE_POMPY.map((option) => ({
+  ...option,
+  ...(option.price_unit !== undefined
+    ? { price_unit: PRICE_OVERRIDES.pumpOptions?.[option.id] ?? option.price_unit }
+    : { price_fixed: PRICE_OVERRIDES.pumpOptions?.[option.id] ?? option.price_fixed }),
+  opis:
+    option.id === "weze_gumowe"
+      ? `${PRICE_OVERRIDES.pumpOptions?.[option.id] ?? option.price_unit} PLN za każdy metr bieżący (maks. 50 mb)`
+      : `Jednorazowa opłata ${PRICE_OVERRIDES.pumpOptions?.[option.id] ?? option.price_fixed} PLN`,
+}));
+
+const collectProductPrices = (products) =>
+  Object.values(products)
+    .flatMap((items) => items || [])
+    .reduce((prices, product) => {
+      prices[product.id] = product.price;
+      return prices;
+    }, {});
+
+export const DEFAULT_PRICE_OVERRIDES = {
+  s1: collectProductPrices(DEFAULT_PRODUKTY_S1),
+  s3: collectProductPrices(DEFAULT_PRODUKTY_S3),
+  pumps: Object.fromEntries(
+    DEFAULT_POMPY.filter((pump) => pump.id !== "brak").map((pump) => [
+      pump.id,
+      {
+        rate_m3: pump.rate_m3,
+        rate_h: pump.rate_h,
+        dojazd: pump.dojazd,
+      },
+    ]),
+  ),
+  heating: Object.fromEntries(
+    DEFAULT_USLUGI_GRZANIE.map((service) => [
+      service.id,
+      service.price_m3,
+    ]),
+  ),
+  pumpOptions: Object.fromEntries(
+    DEFAULT_OPCJE_POMPY.map((option) => [
+      option.id,
+      option.price_unit ?? option.price_fixed,
+    ]),
+  ),
+  transport: { smallOrder: 400 },
+};

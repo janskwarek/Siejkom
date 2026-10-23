@@ -39,6 +39,19 @@ const PUSTY_STAN = {
   wiadomosc: "",
 };
 
+function EmailText({ email }) {
+  return email.split(/([@.])/).map((part, index) =>
+    part === "@" || part === "." ? (
+      <span key={index}>
+        {part}
+        <wbr />
+      </span>
+    ) : (
+      part
+    ),
+  );
+}
+
 function PageHero() {
   return (
     <div className="page-hero">
@@ -205,7 +218,9 @@ export default function Kontakt() {
               <span className="kontakt__detail-icon">✉</span>
               <div>
                 <span className="kontakt__detail-label">E-mail</span>
-                <span className="kontakt__detail-value">{COMPANY.email}</span>
+                <span className="kontakt__detail-value">
+                  <EmailText email={COMPANY.email} />
+                </span>
               </div>
             </a>
             {COMPANY.email2 && (
@@ -217,7 +232,7 @@ export default function Kontakt() {
                 <div>
                   <span className="kontakt__detail-label">E-mail 2</span>
                   <span className="kontakt__detail-value">
-                    {COMPANY.email2}
+                    <EmailText email={COMPANY.email2} />
                   </span>
                 </div>
               </a>

@@ -9,6 +9,8 @@ import {
   USLUGI_GRZANIE,
   POMPA_PROG_M3,
   KATEGORIE,
+  OPCJE_POMPY,
+  DOPLATA_MALE_ZAMOWIENIE,
 } from "./cennik";
 
 // ── Zwraca listę produktów zależnie od kategorii i transportu ──
@@ -56,7 +58,8 @@ export function obliczCene(z) {
   if (!prod) return null;
 
   const cenaBeton = prod.price * ilosc_num;
-  const dopłataGruszka = transport === "gruszka" && ilosc_num < 6 ? 400 : 0;
+  const dopłataGruszka =
+    transport === "gruszka" && ilosc_num < 6 ? DOPLATA_MALE_ZAMOWIENIE : 0;
 
   const cenaGrzanie = (uslugi || []).reduce((sum, uid) => {
     const u = USLUGI_GRZANIE.find((x) => x.id === uid);
@@ -74,15 +77,17 @@ export function obliczCene(z) {
   let cenaOpcjePompy = 0;
   const opcjeBreakdown = [];
   if (opcjePompy) {
+    const cenaWeza = OPCJE_POMPY.find((option) => option.id === "weze_gumowe")?.price_unit || 0;
+    const cenaRurociagu = OPCJE_POMPY.find((option) => option.id === "rurociag")?.price_fixed || 0;
     const wezeM = parseFloat(opcjePompy.weze_gumowe_mb) || 0;
     if (wezeM > 0) {
-      const kwota = wezeM * 35;
+      const kwota = wezeM * cenaWeza;
       cenaOpcjePompy += kwota;
       opcjeBreakdown.push({ label: `Węże gumowe (${wezeM} mb)`, kwota });
     }
     if (opcjePompy.rurociag) {
-      cenaOpcjePompy += 800;
-      opcjeBreakdown.push({ label: "Dostawa rurociągu >15mb", kwota: 800 });
+      cenaOpcjePompy += cenaRurociagu;
+      opcjeBreakdown.push({ label: "Dostawa rurociągu >15mb", kwota: cenaRurociagu });
     }
   }
 

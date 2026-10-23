@@ -21,7 +21,7 @@ Główny kod aplikacji znajduje się w folderze `src/`.
   - `Transport` - Informacje o flocie pojazdów (np. transport i pompowanie).
   - `Realizacje` - Prezentacja zrealizowanych projektów.
   - `Kontakt` - Formularz kontaktowy i dane teleadresowe.
-  - `Admin` - Wersja robocza panelu CMS pod adresem `/admin`; adapter treści znajduje się w `src/pages/Admin/adminContentStore.js` i można go podłączyć do API. Treści są obecnie przechowywane lokalnie, a dodane zdjęcia są dostępne tylko w bieżącej sesji.
+  - `Admin` - Wersja robocza panelu CMS pod adresem `/admin`; adapter treści znajduje się w `src/pages/Admin/adminContentStore.js`, a zmiany cennika w `src/pages/Admin/priceOverrides.js`. Treści i stawki są obecnie przechowywane lokalnie w przeglądarce, a dodane zdjęcia są dostępne tylko w bieżącej sesji.
 - `src/data/` - pliki przechowujące statyczne dane (np. konfiguracja, stałe treści na podstrony).
 - `src/styles/` - pliki globalnych stylów (np. `global.css`).
 - `src/hooks/` - customowe hooki React (narzędzia ponownego użycia logiki).

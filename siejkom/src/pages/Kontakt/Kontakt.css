@@ -529,7 +529,8 @@ a.kontakt__detail-item:hover {
   font-size: 0.95rem;
   font-weight: 500;
   color: var(--color-white);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 /* ── Form fields (shared) ── */

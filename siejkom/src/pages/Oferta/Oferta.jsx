@@ -3,7 +3,25 @@ import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import CtaBanner from "../../components/CtaBanner/CtaBanner";
 import { useReveal } from "../../hooks/useReveal";
 import { Helmet } from "react-helmet-async";
+import {
+  PRODUKTY_S1,
+  PRODUKTY_S3,
+  USLUGI_GRZANIE,
+} from "../Kontakt/cennik";
 import "./Oferta.css";
+
+const PRICE_BY_ID = Object.fromEntries(
+  [
+    ...Object.values(PRODUKTY_S1).flat(),
+    ...Object.values(PRODUKTY_S3).flat(),
+    ...USLUGI_GRZANIE,
+  ]
+    .filter(Boolean)
+    .map((product) => [
+      product.id,
+      product.price ?? product.price_m3,
+    ]),
+);
 
 const KATEGORIE = [
   {
@@ -14,28 +32,28 @@ const KATEGORIE = [
     desc: "Beton konstrukcyjny do fundamentów, słupów, belek i stropów. Produkowany na wytwórni, odbór własny lub za pośrednictwem naszej floty.",
     pozycje: [
       {
+        cenaId: "c8s1",
         klasa: "C 8/10 S1",
-        cena: "325 PLN/m³",
         zastosowanie: "Podkłady, chude betony",
       },
       {
+        cenaId: "c12s1",
         klasa: "C 12/15 S1",
-        cena: "335 PLN/m³",
         zastosowanie: "Fundamenty, ławy",
       },
       {
+        cenaId: "c16s1",
         klasa: "C 16/20 S1",
-        cena: "345 PLN/m³",
         zastosowanie: "Posadzki, podkłady",
       },
       {
+        cenaId: "c20s1",
         klasa: "C 20/25 S1",
-        cena: "355 PLN/m³",
         zastosowanie: "Stropy, schody, belki",
       },
       {
+        cenaId: "c25s1",
         klasa: "C 25/30 S1",
-        cena: "365 PLN/m³",
         zastosowanie: "Słupy, ściany, elementy obciążone",
       },
     ],
@@ -48,33 +66,33 @@ const KATEGORIE = [
     desc: "Beton dostarczany gruszką bezpośrednio na plac budowy. Cena franco — dostawa do 15 km wliczona w cenę.",
     pozycje: [
       {
+        cenaId: "c8s3",
         klasa: "C 8/10 S3",
-        cena: "365 PLN/m³",
         zastosowanie: "Podkłady, chude betony",
       },
       {
+        cenaId: "c12s3",
         klasa: "C 12/15 S3",
-        cena: "375 PLN/m³",
         zastosowanie: "Fundamenty, ławy",
       },
       {
+        cenaId: "c16s3",
         klasa: "C 16/20 S3",
-        cena: "385 PLN/m³",
         zastosowanie: "Posadzki, stropy",
       },
       {
+        cenaId: "c20s3",
         klasa: "C 20/25 S3",
-        cena: "395 PLN/m³",
         zastosowanie: "Konstrukcje żelbetowe",
       },
       {
+        cenaId: "c25s3",
         klasa: "C 25/30 S3",
-        cena: "410 PLN/m³",
         zastosowanie: "Słupy, ściany oporowe",
       },
       {
+        cenaId: "c30s3",
         klasa: "C 30/37 S3",
-        cena: "425 PLN/m³",
         zastosowanie: "Hale, obiekty przemysłowe",
       },
     ],
@@ -87,38 +105,38 @@ const KATEGORIE = [
     desc: "Mieszanki cementowo-gruntowe do podbudów drogowych i przemysłowych. Różne proporcje i klasy wytrzymałości na zamówienie.",
     pozycje: [
       {
+        cenaId: "scp12",
         klasa: "SCP 1:2",
-        cena: "390 PLN/m³",
         zastosowanie: "Intensywnie obciążone podbudowy",
       },
       {
+        cenaId: "scp14",
         klasa: "SCP 1:4",
-        cena: "300 PLN/m³",
         zastosowanie: "Podbudowy drogowe",
       },
       {
+        cenaId: "scp16",
         klasa: "SCP 1:6",
-        cena: "290 PLN/m³",
         zastosowanie: "Podbudowy ogólne",
       },
       {
+        cenaId: "scp18",
         klasa: "SCP 1:8",
-        cena: "280 PLN/m³",
         zastosowanie: "Lekkie podbudowy",
       },
       {
+        cenaId: "scp05",
         klasa: "SCP 0,5 – 1,5 MPa",
-        cena: "220 PLN/m³",
         zastosowanie: "Stabilizacja gruntu",
       },
       {
+        cenaId: "scp15",
         klasa: "SCP 1,5 – 2,5 MPa",
-        cena: "225 PLN/m³",
         zastosowanie: "Podbudowy średnio obciążone",
       },
       {
+        cenaId: "scp25",
         klasa: "SCP 2,5 – 5,0 MPa",
-        cena: "235 PLN/m³",
         zastosowanie: "Drogi, place przemysłowe",
       },
     ],
@@ -132,32 +150,32 @@ const KATEGORIE = [
     pozycje: [
       {
         klasa: "Wodoszczelny W2–W12",
-        cena: "wycena",
+        cenaId: null,
         zastosowanie: "Piwnice, baseny, fundamenty",
       },
       {
         klasa: "Mrozoodporny F25–F300",
-        cena: "wycena",
+        cenaId: null,
         zastosowanie: "Nawierzchnie, parkingi",
       },
       {
         klasa: "Z włóknami stalowymi",
-        cena: "wycena",
+        cenaId: null,
         zastosowanie: "Posadzki przemysłowe",
       },
       {
         klasa: "Z włóknami polipropylen.",
-        cena: "wycena",
+        cenaId: null,
         zastosowanie: "Zbrojenie rozproszone",
       },
       {
+        cenaId: "grzanie_temp",
         klasa: "Grzany +5°C / –10°C",
-        cena: "+25 PLN/m³",
         zastosowanie: "Betonowanie w zimie",
       },
       {
+        cenaId: "grzanie_mrozowy",
         klasa: "Dodatek p/mrozowy",
-        cena: "+25 PLN/m³",
         zastosowanie: "Ochrona w niskich temp.",
       },
     ],
@@ -166,6 +184,7 @@ const KATEGORIE = [
 
 function RowItem({ p, i }) {
   const ref = useReveal();
+  const price = p.cenaId ? PRICE_BY_ID[p.cenaId] : null;
   return (
     <div
       ref={ref}
@@ -174,7 +193,11 @@ function RowItem({ p, i }) {
     >
       <span className="oferta-tabela__klasa">{p.klasa}</span>
       <span className="oferta-tabela__zastosowanie">{p.zastosowanie}</span>
-      <span className="oferta-tabela__cena">{p.cena}</span>
+      <span className="oferta-tabela__cena">
+        {price == null
+          ? "wycena"
+          : `${p.cenaId.startsWith("grzanie_") ? "+" : ""}${price} PLN/m³`}
+      </span>
       <a href="/kontakt" className="oferta-tabela__cta">
         Zamów →
       </a>

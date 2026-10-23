@@ -55,10 +55,12 @@
 .navbar__nav {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  flex-shrink: 0;
+  gap: clamp(0.75rem, 1.6vw, 2rem);
 }
 
 .navbar__link {
+  flex-shrink: 0;
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.14em;
@@ -67,6 +69,7 @@
   position: relative;
   transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   padding-bottom: 2px;
+  white-space: nowrap;
 }
 
 .navbar__link::after {
@@ -178,7 +181,7 @@
 }
 
 /* ── Mobile ── */
-@media (max-width: 888px) {
+@media (max-width: 1080px) {
   .navbar {
     padding-block: 0.7rem;
   }

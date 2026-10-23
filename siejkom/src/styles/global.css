@@ -55,6 +55,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: clip;
 }
 
 body {
@@ -63,7 +64,8 @@ body {
   font-family: var(--font-body);
   font-weight: 400;
   line-height: 1.7;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -260,14 +262,28 @@ ul {
 
 .page-hero__title {
   color: var(--color-white);
-  font-size: clamp(2.8rem, 7vw, 6.5rem);
+  font-size: clamp(2.25rem, 7vw, 6.5rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.05;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 @media (max-width: 768px) {
   :root {
     --section-pad: clamp(3rem, 8vw, 5rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .page-hero__title {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+}
+
+@media (max-width: 360px) {
+  .section-title__heading {
+    font-size: clamp(1.65rem, 8vw, 2rem);
   }
 }

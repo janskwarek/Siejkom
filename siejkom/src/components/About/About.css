@@ -15,6 +15,10 @@
   align-items: center;
 }
 
+.about__content {
+  min-width: 0;
+}
+
 /* Image */
 .about__image-wrap {
   position: relative;
@@ -96,15 +100,17 @@
 
 .about__stat {
   cursor: default;
+  min-width: 0;
 }
 
 .about__stat-value {
   display: block;
   font-family: var(--font-display);
-  font-size: 2.8rem;
+  font-size: clamp(1.4rem, 3vw, 2rem);
   color: var(--color-white);
   line-height: 1;
   font-weight: 800;
+  white-space: nowrap;
   background: linear-gradient(135deg, var(--color-white), var(--color-accent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -143,7 +149,7 @@
   }
 
   .about__stat-value {
-    font-size: 2rem;
+    font-size: clamp(1.35rem, 6vw, 2rem);
   }
 
   .about__badge {
